@@ -27,18 +27,19 @@
     <center><h1 style=""> Movie Recommendation System</h1></center>
     <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: white;">
         <form action="{{ url_for('home') }}" method="POST">
-            <input class="movie form-control" type="text" id="movie_name" name="movie_name" placeholder="Enter a full movie name" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" required />
+            <input class="movie form-control" type="text" id="movie_name" name="movie_name" placeholder="Enter a full movie name" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" autocomplete="off" required />
             <br>
             <input class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" type="submit" id="submission_button" value="Submit"/>
         </form>
     </div>
 
 	</div>
-	<div class="results">
-    <center>
-      <h2 id="name" class="text-uppercase"></h2>
-    </center>
-	</div>
+    <hr>
+	<a href="{{ url_for('landing') }}">
+	<button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" >
+		 Logout
+	</button>
+	</a>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
