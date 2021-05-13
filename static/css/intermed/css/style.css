@@ -1,0 +1,12 @@
+body {
+ background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../image/back.jpg") no-repeat center;
+ color:#FFF;
+}
+
+.container {
+ background:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+.container-fluid {
+ background:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
