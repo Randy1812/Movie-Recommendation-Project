@@ -8,8 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500&display=swap" rel="stylesheet">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,7 +21,7 @@
 
 </head>
 
-<body id="content">
+<body id="content" style="font-family: Recursive, sans-serif;">
 	<br>
 	<br>
 	<br>
@@ -143,13 +143,13 @@
 		{% endfor %}
 	</div>
 	<a href="{{ url_for('home') }}">
-	<button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:160px;" >
+	<button class="btn btn-primary btn-block movie-button" style="font-size: 1.42rem; background-color: #e50914; text-align: center; border-color: #e50914; width:240px;" >
 		 Back to Main Page
 	</button>
 	</a>
 	<hr>
 	<a href="{{ url_for('landing') }}">
-	<button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:160px;" >
+	<button class="btn btn-primary btn-block movie-button" style="font-size: 1.42rem; background-color: #e50914; text-align: center; border-color: #e50914; width:160px;" >
 		 Logout
 	</button>
 	</a>

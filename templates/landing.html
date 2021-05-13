@@ -35,8 +35,9 @@
 	</script>
 
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic|Open+Sans:300italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
-
+<!--	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic|Open+Sans:300italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>-->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Recursive:wght@300;400;500&display=swap" rel="stylesheet">
 
 	<script>
 		$(function() {
@@ -93,8 +94,8 @@
 				<h1>Simple landing page</h1>
 				<p>Just for you. </p>
 				<div class="learn-button">
-					<a class="slide-btn" href="{{ url_for('login', do='signup') }}">Sign Up</a>
-					<a class="slide-btn" href="{{ url_for('login', do='login') }}">Log In</a>
+					<a class="slide-btn" href="{{ url_for('login', do='signup') }}" style="font-size: 1.42rem; font-weight: 500;">Sign Up</a>
+					<a class="slide-btn" href="{{ url_for('login', do='login') }}" style="font-size: 1.42rem; font-weight: 500;">Log In</a>
 				</div>
 			</div>
 		</div>

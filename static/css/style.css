@@ -26,7 +26,6 @@
 #content {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url("../back.jpg");
 	background-color: #181818;
-	font-family: 'Noto Sans JP', sans-serif;
 }
 
 #details {
@@ -43,13 +42,15 @@
 }
 
 h1 {
-    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #e50914;
     font-weight: bold;
     margin-top: 30px;
     text-shadow: #000000 0px 0px 13px;
  }
 
+a:hover{
+    text-decoration: none;
+}
 
 #name {
 	color: white;
@@ -90,9 +91,6 @@ h6 {
 		display: flex;
 		flex-wrap: nowrap;
 	}
-
-
-
 }
 
 .poster{

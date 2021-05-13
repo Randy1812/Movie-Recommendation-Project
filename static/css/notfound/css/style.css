@@ -12,7 +12,7 @@ html {
 
 * {
     box-sizing: border-box;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'Recursive', sans-serif;
 
 }
 
@@ -116,7 +116,7 @@ body a:hover {
 /*/////////////// GLOBAL STYLES ////////////////////*/
 
 body {
-  font-family: 'Hind Siliguri', sans-serif;
+  font-family: 'Recursive', sans-serif;
 }
 
 /* error page */
@@ -126,7 +126,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #3f81b3 url("../images/bg.jpg") no-repeat center;
+  background: #E50914 url("../images/bg.jpg") no-repeat center;
   background-size: cover;
   overflow: hidden;
   z-index: 0;
@@ -230,9 +230,9 @@ a.btn.btn-style{
   color:#FFF0F5;
 }
 a.btn.btn-style:hover {
-  color:#457b9d;
+  color:#E50914;
   background-color: #FFF0F5;
-  border:1px soliod #FFF0F5;
+  border:1px solid #FFF0F5;
 }
 /*--//Error-Page--*/
 .w3layouts-copyright {
