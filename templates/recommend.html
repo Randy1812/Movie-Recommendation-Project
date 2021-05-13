@@ -28,7 +28,7 @@
 	<br>
 	<div class="results">
 		<center>
-			<h2 id="name" class="text-uppercase">{{curr_mov_info[0]}}</h2>
+			<h2 id="name" class="text-uppercase" style="font-size: 3rem;">{{curr_mov_info[0]}}</h2>
 		</center>
 	</div>
 	<br>
@@ -65,7 +65,7 @@
 	<br>
 	<div class="movie" style="color: #E8E8E8;">
 		<center>
-			<h3>TOP CAST</h3>
+			<h3 style="font-size: 3rem;">TOP CAST</h3>
 		</center>
 	</div>
 	<br>
@@ -120,7 +120,7 @@
 	<br>
 	<div class="movie" style="color: #E8E8E8;">
 		<center>
-			<h3>RECOMMENDED MOVIES FOR YOU</h3>
+			<h3 style="font-size: 3rem;">RECOMMENDED MOVIES FOR YOU</h3>
 		</center>
 	</div>
 	<br>
@@ -142,6 +142,7 @@
 		</div>
 		{% endfor %}
 	</div>
+	<br><br>
 	<a href="{{ url_for('home') }}">
 	<button class="btn btn-primary btn-block movie-button" style="font-size: 1.42rem; background-color: #e50914; text-align: center; border-color: #e50914; width:240px;" >
 		 Back to Main Page
