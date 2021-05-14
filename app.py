@@ -59,6 +59,7 @@ def get_recommendations(title):
     return_df['Movie ID'] = mov_id
     return return_df
 
+
 def get_single_movie_info(ids):
     api_key = API_KEY
     img_path = "http://image.tmdb.org/t/p/w500"
@@ -80,6 +81,26 @@ def get_single_movie_info(ids):
     temp.append(data['release_date'].split('-')[0])
     temp.append(data['runtime'])
     temp.append(f"{img_path}{data['poster_path']}")
+    temp.append(data['imdb_id'])
+    # pprint(temp)
+    # print(temp[-1])
+    url = "https://imdb8.p.rapidapi.com/title/get-user-reviews"
+    querystring = {"tconst": f"{temp[-1]}"}
+    headers = {
+        'x-rapidapi-key': "cf61825fe6mshaa7ecf5fa25b75bp1c5a42jsn373bd69cfeb3",
+        'x-rapidapi-host': "imdb8.p.rapidapi.com"
+    }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    data = response.json()['reviews']
+    all_info = []
+    for i in range(10):
+        tpp = str(data[i]['reviewText'])
+        tpp.replace('"', "'")
+        all_info.append(tpp)
+    # pprint(all_info)
+    # print(len(all_info))
+    # print(all_info[1])
+    temp.append(all_info)
     return temp
 
 
@@ -117,6 +138,7 @@ def get_mult_movie_info(ids):
         # print(f"Image URL: {img_path}{data['poster_path']}")
         temp.append(f"{img_path}{data['poster_path']}")
         # print(temp)
+        temp.append(data['imdb_id'])
         all_movie_data.append(temp)
         # print("\n\n")
     # print(all_movie_data)

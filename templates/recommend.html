@@ -86,32 +86,26 @@
 		{% endfor %}
 	</div>
 
-	<!--  <center>-->
-	<!--    {% if reviews %}-->
-	<!--    <h2 style="color:white">USER REVIEWS</h2>-->
-	<!--     <div class="col-md-12" style="margin: 0 auto; margin-top:25px;">-->
-	<!--        <table class="table table-bordered" bordercolor="white" style="color:white">-->
-	<!--            <thead>-->
-	<!--                <tr>-->
-	<!--                    <th class="text-center" scope="col" style="width: 75%">Comments</th>-->
-	<!--                </tr>-->
-	<!--            </thead>-->
+	  <center>
+	    <h2 style="color:white">USER REVIEWS</h2>
+	     <div class="col-md-12" style="margin: 0 auto; margin-top:25px;">
+	        <table class="table table-bordered" bordercolor="white" style="color:white">
+	            <thead>
+	                <tr>
+	                    <th class="text-center" scope="col" style="width: 75%">Comments</th>
+	                </tr>
+	            </thead>
 
-	<!--            <tbody>-->
-	<!--		      {% for review, status in reviews.items() if not reviews.hidden %}-->
-	<!--		      <tr style="background-color:#e5091485;">-->
-	<!--              	  <td>{{review}}</td>-->
-	<!--          		</tr>-->
-	<!--      			{% endfor %}-->
-	<!--    		</tbody>-->
-	<!-- 		 </table>-->
-	<!--    </div>-->
-	<!--    {% else %}-->
-	<!--    <div style="color:white;">-->
-	<!--      <h1 style="color:white"> This movie is not released yet. Stay tuned! </h1>-->
-	<!--    </div>-->
-	<!--    {% endif %}-->
-	<!--  </center>-->
+	            <tbody>
+			      {% for review in curr_mov_info[-1]: %}
+			      <tr style="background-color:#e5091485;">
+	              	  <td>{{review}}</td>
+	          		</tr>
+	      			{% endfor %}
+	    		</tbody>
+	 		 </table>
+	    </div>
+	  </center>
 	<br>
 	<br>
 	<br>
