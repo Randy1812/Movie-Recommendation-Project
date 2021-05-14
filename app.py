@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('TMDB_API_KEY')
+TMDB_API_KEY = os.getenv('TMDB_API_KEY')
+RAPIDAPI_KEY = os.getenv('RAPIDAPI_KEY')
 
 app = Flask(__name__)
 
@@ -61,7 +62,7 @@ def get_recommendations(title):
 
 
 def get_single_movie_info(ids):
-    api_key = API_KEY
+    api_key = TMDB_API_KEY
     img_path = "http://image.tmdb.org/t/p/w500"
     api_endpoint = "https://api.themoviedb.org/3/movie/"
     mov_dat_params = {
@@ -87,25 +88,28 @@ def get_single_movie_info(ids):
     url = "https://imdb8.p.rapidapi.com/title/get-user-reviews"
     querystring = {"tconst": f"{temp[-1]}"}
     headers = {
-        'x-rapidapi-key': "cf61825fe6mshaa7ecf5fa25b75bp1c5a42jsn373bd69cfeb3",
+        'x-rapidapi-key': RAPIDAPI_KEY,
         'x-rapidapi-host': "imdb8.p.rapidapi.com"
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = response.json()['reviews']
-    all_info = []
+    revs = []
+    analysis = []
     for i in range(10):
         tpp = str(data[i]['reviewText'])
         tpp.replace('"', "'")
-        all_info.append(tpp)
+        revs.append(tpp)
+        # analysis.append(ann_model.predict(tpp)[0][0] > 0.5)
     # pprint(all_info)
     # print(len(all_info))
     # print(all_info[1])
-    temp.append(all_info)
+    temp.append(revs)
+    # temp.append(analysis)
     return temp
 
 
 def get_mult_movie_info(ids):
-    api_key = API_KEY
+    api_key = TMDB_API_KEY
     img_path = "http://image.tmdb.org/t/p/w500"
     api_endpoint = "https://api.themoviedb.org/3/movie/"
     mov_dat_params = {
@@ -146,7 +150,7 @@ def get_mult_movie_info(ids):
 
 
 def get_cast_info(ids):
-    api_key = API_KEY
+    api_key = TMDB_API_KEY
     img_path = "http://image.tmdb.org/t/p/w500/"
     cast_info_url = "https://api.themoviedb.org/3/movie/"
     cast_info_params = {

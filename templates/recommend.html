@@ -93,15 +93,19 @@
 	            <thead>
 	                <tr>
 	                    <th class="text-center" scope="col" style="width: 75%">Comments</th>
+						<th class="text-center" scope="col" style="width: 25%">Sentiment</th>
 	                </tr>
+
 	            </thead>
 
 	            <tbody>
-			      {% for review in curr_mov_info[-1]: %}
-			      <tr style="background-color:#e5091485;">
-	              	  <td>{{review}}</td>
-	          		</tr>
-	      			{% endfor %}
+			      {% for i in range(curr_mov_info[-1]|length): %}
+			      	<tr style="background-color:#e5091485;">
+	              		  <td>{{ curr_mov_info[-1][i] }}</td>
+						  <td>Positive</td>
+<!--				          <td>{{ curr_mov_info[-2][i] }}</td>&ndash;&gt;-->
+				  	</tr>
+				  {% endfor %}
 	    		</tbody>
 	 		 </table>
 	    </div>
