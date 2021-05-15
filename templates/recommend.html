@@ -99,11 +99,11 @@
 	            </thead>
 
 	            <tbody>
-			      {% for i in range(curr_mov_info[-1]|length): %}
+			      {% for i in range(curr_mov_info[-2]|length): %}
 			      	<tr style="background-color:#e5091485;">
-	              		  <td>{{ curr_mov_info[-1][i] }}</td>
-						  <td>Positive</td>
-<!--				          <td>{{ curr_mov_info[-2][i] }}</td>&ndash;&gt;-->
+	              		  <td>{{ curr_mov_info[-2][i] }}</td>
+						  <!-- <td>Positive</td> -->
+				          <td>{{ curr_mov_info[-1][i] }}</td>&ndash;&gt;
 				  	</tr>
 				  {% endfor %}
 	    		</tbody>

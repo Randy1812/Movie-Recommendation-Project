@@ -6,13 +6,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 from pprint import pprint
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
-TMDB_API_KEY = os.getenv('TMDB_API_KEY')
-RAPIDAPI_KEY = os.getenv('RAPIDAPI_KEY')
+
+TMDB_API_KEY = '7a6f6a890df3e553f8aaf75ec5cf078e'
+RAPIDAPI_KEY ='cf61825fe6mshaa7ecf5fa25b75bp1c5a42jsn373bd69cfeb3'
 
 app = Flask(__name__)
 
@@ -45,6 +43,28 @@ all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 col_list = ['title', 'id']
 df3 = pd.read_csv("./model/tmdb.csv", usecols=col_list)
 
+import tensorflow as tf
+import tensorflow_datasets as tfds
+import tensorflow_hub as hub
+import string
+import sys
+import numpy as np
+import datetime
+tfds.load(name='imdb_reviews')
+train_data, validation_data , test_data = tfds.load(name='imdb_reviews',split=['train[:60%]','train[60%:]','test'],as_supervised=True)
+train_examples_data, train_labels_data = next(iter(train_data.batch(10)))
+vector_model = "https://tfhub.dev/google/tf2-preview/gnews-swivel-20dim/1" #Importing Pretrained model(Maps from text to 20-dimensional embedding vectors)on Tensorflow Hub
+hub_layer = hub.KerasLayer(vector_model, input_shape=[],dtype=tf.string, trainable=True) #Creating a Keras layer of this model to use it in our CNN model.
+ann_model = tf.keras.Sequential();
+ann_model.add(hub_layer)#20 dim vector hence 20 neurons
+ann_model.add(tf.keras.layers.Dense(16,activation = 'relu'))
+ann_model.add(tf.keras.layers.Dense(1,activation = 'sigmoid'))
+ann_model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
+ann_model.fit(train_data.shuffle(10000).batch(256),epochs=10,validation_data = validation_data.batch(256),verbose=1)
+test_examples_data, test_labels_data = next(iter(test_data.batch(2000))) #Creating Batches of our Test Data
+y_pred = ann_model.predict(test_examples_data) #Predicting the on the Test Data
+y_pred = (y_pred > 0.5) #Converting y_pred into 0's and 1's depending on whether it is more than or lesser than 0.
+y_test = np.reshape(test_labels_data,(-1,1)) #Reshaping the Test Label Data according to our y_pred
 
 def get_recommendations(title):
     cosine_sim = cosine_similarity(count_matrix, count_matrix)
@@ -99,12 +119,17 @@ def get_single_movie_info(ids):
         tpp = str(data[i]['reviewText'])
         tpp.replace('"', "'")
         revs.append(tpp)
-        # analysis.append(ann_model.predict(tpp)[0][0] > 0.5)
+        review_word=ann_model.predict([tpp])[0][0] > 0.5
+        if review_word:
+            analysis.append("Positive")
+        else:
+            analysis.append("Negative")
     # pprint(all_info)
     # print(len(all_info))
     # print(all_info[1])
     temp.append(revs)
-    # temp.append(analysis)
+    temp.append(analysis)
+    print(analysis)
     return temp
 
 
@@ -215,11 +240,11 @@ def verify():
         return render_template("intermd.html", data=data)
     else:
         exists = db.session.query(User.username).filter_by(username=usrnm).first() is not None
-        print(exists)
+        # print(exists)
         if exists:
             user_to_verify = User.query.get(usrnm)
-            print(user_to_verify.username)
-            print(user_to_verify.password)
+            # print(user_to_verify.username)
+            # print(user_to_verify.password)
             if (usrnm == user_to_verify.username) and (pswd == user_to_verify.password):
                 data = ['Success!!', "You have been logged in successfully!!", 'Continue', "success"]
                 return render_template("intermd.html", data=data)
@@ -254,13 +279,13 @@ def home():
             for i in range(len(df3['title'])):
                 if df3['title'].iloc[i] == m_name:
                     req_mov_id = df3['id'].iloc[i]
-            print(req_mov_id)
+            # print(req_mov_id)
             req_mov_info = get_single_movie_info(req_mov_id)
             req_mov_cast_info = get_cast_info(req_mov_id)
             rec_mov_info = get_mult_movie_info(m_ids)
-            pprint(req_mov_info)
-            pprint(req_mov_cast_info)
-            pprint(rec_mov_info)
+            # pprint(req_mov_info)
+            # pprint(req_mov_cast_info)
+            # pprint(rec_mov_info)
             return render_template('recommend.html', curr_mov_info=req_mov_info, curr_mov_cast=req_mov_cast_info, recm_mov_info=rec_mov_info)
 
 
